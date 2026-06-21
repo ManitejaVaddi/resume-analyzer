@@ -2,13 +2,12 @@ import { useState } from "react";
 import { extractPDFText } from "../utils/pdfExtractor";
 import { calculateATS } from "../utils/atsScorer";
 import { getSuggestions } from "../utils/getSuggestions";
-import { analyzeResume } from "../utils/aiAnalyzer";
+// import { analyzeResume } from "../utils/aiAnalyzer";
 import { getMissingSkills }from "../utils/getMissingSkills";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
-import { calculateMatch }
-from "../utils/jobMatcher";
+import { calculateMatch } from "../utils/jobMatcher";
 
 import "./Home.css";
 
@@ -28,6 +27,13 @@ const [matchScore, setMatchScore] =
   useState(0);
 
   const handleUpload = async (e) => {
+
+    const match = calculateMatch(
+  text,
+  jobDescription
+);
+
+setMatchScore(match);
 const file = e.target.files[0];
 
 if (!file) return;
@@ -64,9 +70,9 @@ getMissingSkills(
 
 setMissingSkills(missing);
 
-      const aiResult = await analyzeResume(text);
+      // const aiResult = await analyzeResume(text);
 
-      setAiResponse(aiResult);
+      // setAiResponse(aiResult);
 
     } catch (error) {
 
