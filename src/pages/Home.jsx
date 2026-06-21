@@ -17,7 +17,7 @@ export default function Home() {
   
   const [missingSkills,setMissingSkills] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
-  const [aiResponse, setAiResponse] = useState("");
+  // const [aiResponse, setAiResponse] = useState("");
   const [loading, setLoading] = useState(false);
   const [fileName, setFileName] = useState("");
   const [company, setCompany] = useState("");
@@ -28,12 +28,7 @@ const [matchScore, setMatchScore] =
 
   const handleUpload = async (e) => {
 
-    const match = calculateMatch(
-  text,
-  jobDescription
-);
-
-setMatchScore(match);
+    
 const file = e.target.files[0];
 
 if (!file) return;
@@ -46,6 +41,7 @@ setFileName(file.name);
 
       const text = await extractPDFText(file);
       console.log("PDF TEXT:", text);
+  
       const match =
 calculateMatch(
   text,
@@ -78,9 +74,9 @@ setMissingSkills(missing);
 
       console.error("Upload Error:", error);
 
-      setAiResponse(
-        "AI Analysis could not be generated. Please check your Gemini API Key."
-      );
+      // setAiResponse(
+      //   "AI Analysis could not be generated. Please check your Gemini API Key."
+      // );
 
     } finally {
 
@@ -235,7 +231,7 @@ setMissingSkills(missing);
 
         )}
 
-        {loading && (
+        {/* {loading && (
 
           <div
             className="card"
@@ -264,9 +260,9 @@ setMissingSkills(missing);
               {aiResponse}
             </pre>
 
-          </div>
+          </div> */}
 
-        )}
+        {/* )} */}
 
         <Footer />
 
